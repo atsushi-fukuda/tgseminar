@@ -53,7 +53,8 @@ module Module {
 		()=> {
 		}
 	)
-		.controller("SampleTestController", Sample.TestController)
+        .controller("SampleTestController", Sample.TestController)
+        .controller("TodoController", TodoController.Controller)
 	;
 
 	// モジュールの定義。directiveに関するモジュール。

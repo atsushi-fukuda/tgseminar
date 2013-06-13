@@ -15,23 +15,15 @@
     <script type="text/javascript" src="/scripts/main.min.js" charset="utf-8"></script>
 </head>
 <body>
-
-<div ng-view>
-</div>
-
-<script type="text/ng-template" id="/template/sample.html">
-    <div ng-controller="SampleTestController">
-        <input type="text" ng-model="name">
-        {{name}}
+<div ng-controller="TodoController">
+    TODO List
+    <div ng-repeat="todo in todos">
+        {{todo.content}}
     </div>
-</script>
+    <input type="text" ng-model="newContent" placeholder="aaa">
+    <button ng-click="add()">add</button>
 
-<script type="text/ng-template" id="/template/main.html">
-    <p>
-        メインです。<br>
-        <a ng-href="/sample">サンプル</a>
-    </p>
-</script>
-
+    </div>
+</div>
 </body>
 </html>

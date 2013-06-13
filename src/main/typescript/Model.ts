@@ -18,4 +18,10 @@ module Model {
 			this.test = data.test;
 		}
 	}
+
+    export class Todo{
+        constructor(public content:string = "nothing"){
+
+        }
+    }
 }
