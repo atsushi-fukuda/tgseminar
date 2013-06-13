@@ -8,7 +8,7 @@
     <slim3.version>1.0.16</slim3.version>
     <appengine.version>1.8.0</appengine.version>
     <generated.src>.apt_generated</generated.src>
-    <generated.war>src/main/webapp</generated.war>
+    <generated.war>war</generated.war>
     <eclipse.lib>eclipse.lib</eclipse.lib>
   </properties>
   <repositories>
@@ -113,7 +113,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>apt-maven-plugin</artifactId>
-          <version>1.0-alpha-5</version>
+          <version>1.0-alpha-3</version>
           <dependencies>
             <dependency>
               <groupId>org.slim3</groupId>
@@ -155,7 +155,7 @@
         <artifactId>apt-maven-plugin</artifactId>
         <configuration>
           <encoding>utf-8</encoding>
-          <sourceOutputDirectory>${generated.src}</sourceOutputDirectory>
+          <outputDirectory>${generated.src}</outputDirectory>
         </configuration>
         <executions>
           <execution>
@@ -216,7 +216,7 @@
                 <include>**/*.*</include>
               </includes>
             </fileset>
-      <!--
+	    <!--
             <fileset>
               <directory>${eclipse.lib}</directory>
               <includes>
@@ -231,7 +231,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
-		<webXml>${generated.war}/WEB-INF/web.xml</webXml>
+          <webXml>war/WEB-INF/web.xml</webXml>
           <warSourceExcludes>.gwt-tmp/**</warSourceExcludes>
         </configuration>
       </plugin>
@@ -286,7 +286,7 @@ org.eclipse.jdt.apt.reconcileEnabled=false
                 <![CDATA[
 eclipse.preferences.version=1
 jarsExcludedFromWebInfLib=
-warSrcDir=src/main/webapp
+warSrcDir=war
 warSrcDirIsOutput=false
                ]]>
               </content>
