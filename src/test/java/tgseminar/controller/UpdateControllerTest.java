@@ -29,7 +29,7 @@ public class UpdateControllerTest extends ControllerTestCase {
 		*/
 		
 		//id nasi
-		tester.param("title","To-Do #1");
+		tester.param("title","To-Do #2 Changed");
 		tester.start("/Update");
 		assertThat(tester.response.getStatus(),is(400));
 		
@@ -38,7 +38,7 @@ public class UpdateControllerTest extends ControllerTestCase {
 	public void respond400IfIdNotNumber() throws NullPointerException, IllegalArgumentException, IOException, ServletException{
 		//id is not number
 		tester.param("id","a");
-		tester.param("title","To-Do #1");
+		tester.param("title","To-Do #2 Changed");
 		tester.start("/Update");
 		assertThat(tester.response.getStatus(),is(400));
 	}
@@ -55,7 +55,7 @@ public class UpdateControllerTest extends ControllerTestCase {
 		//id noe exists
 		
 		tester.param("id",1000);
-		tester.param("title","To-Do #1");
+		tester.param("title","To-Do #2 Changed");
 		tester.start("/Update");
 		assertThat(tester.response.getStatus(),is(404));		
 	}
@@ -69,7 +69,7 @@ public class UpdateControllerTest extends ControllerTestCase {
 		//assertThat("Pre-condition",entity.getProperty("createdBy"),is)
 		
 		tester.param("id",1);
-		tester.param("title","To-Do #1");
+		tester.param("title","To-Do #2 Changed");
 		tester.start("/Update");
 		assertThat(tester.response.getStatus(),is(403));		
 	}
