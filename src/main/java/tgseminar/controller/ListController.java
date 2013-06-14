@@ -26,12 +26,14 @@ public class ListController extends Controller {
 		String createdBy = user.getEmail();
 		
 		List<Entity> list = Memcache.get(createdBy);
+		//List<Entity> list = null;
 		if(list==null){
 			System.out.println("no catche");
 			list = Datastore.query("ToDo")
 					.filter("createdBy", FilterOperator.EQUAL, createdBy)
 					.sort("createdAt", SortDirection.DESCENDING)
 					.asList();			
+			System.out.println(list.size());
 			Memcache.put(createdBy,list);			
 		}else{
 			System.out.println("catche exist");

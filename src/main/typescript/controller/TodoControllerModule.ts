@@ -4,6 +4,9 @@
 ///<reference path='../libs/DefinitelyTyped/angularjs/angular.d.ts' />
 
 ///<reference path='../Model.ts' />
+///<reference path='../Service.ts' />
+
+
 module TodoController {
     export interface Scope extends ng.IScope {
         todos: Model.Todo[];
@@ -14,13 +17,14 @@ module TodoController {
 
         remove:(index:number)=>void;
         modify:(index:number)=>void;
+        getList:()=>void;
 
         debugIndex:number;
 
     }
 
     export class Controller {
-        constructor(public $scope:Scope,public $window:Window){
+        constructor(public $scope:Scope,public $window:Window,public todoService:Service.TodoService){
             this.$scope.todos = [
                 new Model.Todo("ss1"),
                 new Model.Todo("ss2")
@@ -42,6 +46,13 @@ module TodoController {
                 //this.$scope.todos[index].content = targetContent;
             }
             */
+            this.todoService.getList()
+                .success(
+                    (todos:Model.Todo[])=>
+                    {
+                        this.$scope.todos = todos;
+                    }
+                );
 
         }
 
@@ -56,10 +67,10 @@ module TodoController {
         }
         modify(index:number){
             //this.$scope.modContent = this.$window.prompt("e");
-            var modContent = this.$window.prompt("change to ?",this.$scope.todos[index].content);
+            var modContent = this.$window.prompt("change to ?",this.$scope.todos[index].title);
             //console.log("sss" + modContent);
             if(modContent){
-                this.$scope.todos[index].content = modContent;
+                this.$scope.todos[index].title = modContent;
             }
         }
     }

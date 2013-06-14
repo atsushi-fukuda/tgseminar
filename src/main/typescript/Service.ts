@@ -4,6 +4,7 @@
 ///<reference path='Controller.ts' />
 
 ///<reference path='service/SampleServiceModule.ts' />
+///<reference path='service/ToDoServiceModule.ts' />
 
 'use strict';
 
@@ -42,9 +43,12 @@ module Module {
 		()=> {
 		}
 	)
-		.factory("sampleService", ($http:ng.IHttpService):Service.SampleService=> {
-			return new Service.SampleService($http);
-		})
+        .factory("sampleService", ($http:ng.IHttpService):Service.SampleService=> {
+            return new Service.SampleService($http);
+        })
+        .factory("todoService", ($http:ng.IHttpService):Service.TodoService=> {
+            return new Service.TodoService($http);
+        })
 	;
 
 	angular.module(
@@ -55,6 +59,8 @@ module Module {
 	)
         .controller("SampleTestController", Sample.TestController)
         .controller("TodoController", TodoController.Controller)
+
+
 	;
 
 	// モジュールの定義。directiveに関するモジュール。

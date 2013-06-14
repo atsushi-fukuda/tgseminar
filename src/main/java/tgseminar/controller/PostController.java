@@ -5,6 +5,7 @@ import java.util.Date;
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.datastore.Datastore;
+import org.slim3.memcache.Memcache;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.users.User;
@@ -35,6 +36,9 @@ public class PostController extends Controller {
 		entity.setProperty("createdAt", createdAt);
 		
 		Datastore.put(entity);
+		
+		Memcache.delete(createdBy);
+		
 		super.response.setStatus(201);		
 		//super.response.setStatus(201, "completes to save correctly");
 		
