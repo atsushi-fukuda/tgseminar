@@ -53,14 +53,16 @@ public class UpdateController extends Controller {
 	    	return null;
 	    }
 		User user = UserServiceFactory.getUserService().getCurrentUser();
-	    if(entity.getProperty("createdBy") != user.getEmail()){
+	    if(!user.getEmail().equals(entity.getProperty("createdBy"))){
 	    	super.response.sendError(403, "entity is not your's");
 	    	return null;	    	
 	    }
 	    
+	    entity.setProperty("title", title);
+	    Datastore.put(entity);
 	    
 	    //Datastore.delete(key);
-		//super.response.setStatus(100);
+		super.response.setStatus(200);
 		return null;
 	}
 

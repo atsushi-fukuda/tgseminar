@@ -74,6 +74,15 @@ public class UpdateControllerTest extends ControllerTestCase {
 		assertThat(tester.response.getStatus(),is(403));		
 	}
 	@Test
+	public void respond200withTitleChange() throws NullPointerException, IllegalArgumentException, IOException, ServletException{
+		//ok :D		
+		tester.param("id",2);
+		tester.param("title","To-Do #2 Changed");
+		tester.start("/Update");
+		Entity entity = Datastore.getOrNull(Datastore.createKey("ToDo", 2));
+		assertThat((String)entity.getProperty("title"),is(tester.param("title")));		
+	}
+	@Test
 	public void respond200Complete() throws NullPointerException, IllegalArgumentException, IOException, ServletException{
 		//ok :D		
 		tester.param("id",2);
