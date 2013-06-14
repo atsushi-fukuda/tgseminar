@@ -22,8 +22,8 @@ module Model {
     export class Todo{
         id:number;
         title:string;
-        createdAt:String;
-        createdBy:String;
+        createdAt:string;
+        createdBy:string;
         constructor(data:any)
         {
             this.id =data.id;

@@ -73,15 +73,37 @@ module TodoController {
         }
         remove(index:number){
             //this.$scope.debugIndex = this.$scope.debugIndex;
-            this.$scope.todos.splice(index,1);
+            //this.$scope.todos.splice(index,1);
+            this.todoService.remove(index);
+            this.todoService.getList()
+                .success(
+                (todos:Model.Todo[])=>
+                {
+                    this.$scope.todos = todos;
+                }
+            );
         }
         modify(index:number){
             //this.$scope.modContent = this.$window.prompt("e");
-            var modContent = this.$window.prompt("change to ?",this.$scope.todos[index].title);
+            var id = this.$scope.todos[index].id;
+            var title:string = this.$scope.todos[index].title
+            var modContent:string = this.$window.prompt("change to ?",title);
+            //var modContent:String = this.$window.prompt("change to ?");
             //console.log("sss" + modContent);
+            /*
             if(modContent){
                 this.$scope.todos[index].title = modContent;
             }
+            */
+            this.todoService.modify(id,modContent);
+            this.todoService.getList()
+                .success(
+                (todos:Model.Todo[])=>
+                {
+                    this.$scope.todos = todos;
+                }
+            );
+
         }
     }
 }
