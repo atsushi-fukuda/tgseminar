@@ -58,8 +58,18 @@ module TodoController {
 
         add(){
             var content:string = this.$scope.newContent;
+            /*
             var todo:Model.Todo = new Model.Todo(content);
             this.$scope.todos.push(todo);
+            */
+            this.todoService.add(content);
+            this.todoService.getList()
+                .success(
+                (todos:Model.Todo[])=>
+                {
+                    this.$scope.todos = todos;
+                }
+            );
         }
         remove(index:number){
             //this.$scope.debugIndex = this.$scope.debugIndex;

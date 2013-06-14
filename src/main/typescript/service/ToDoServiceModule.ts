@@ -28,5 +28,21 @@ module Service {
             };
             return wrapped;
         }
+
+        add(title):ng.IHttpPromise {
+            var data = {"title":title};
+
+            var promise = this.$http.post("/Post",data,{"params":data});
+            var wrapped:ng.IHttpPromise = {
+                success: (callback) => {
+                    promise.success((data, status, headers, config) => {
+                        callback(data, status, headers, config);
+                    });
+                },
+                error: promise.error,
+                then: promise.then
+            };
+            return wrapped;
+        }
     }
 }
