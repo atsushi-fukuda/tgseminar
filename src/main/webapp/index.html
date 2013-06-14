@@ -17,13 +17,17 @@
 <body>
 <div ng-controller="TodoController">
     TODO List
-    <div ng-repeat="todo in todos">
-        {{todo.content}}
-    </div>
-    <input type="text" ng-model="newContent" placeholder="aaa">
+    <ul>
+        <li ng-repeat="todo in todos">
+            {{$index}}：{{todo.content}}
+            <!--<input type="text" ng-model="todo.content"/>-->
+            <button ng-click="modify($index)">modify</button>
+            <button ng-click="remove($index)">remove!</button>
+        </li>
+    </ul>
+    <input type="text" ng-model="newContent" placeholder="todo content">
     <button ng-click="add()">add</button>
-
-    </div>
+    {{debugIndex}}
 </div>
 </body>
 </html>
